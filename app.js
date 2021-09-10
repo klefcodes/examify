@@ -19,7 +19,7 @@ app.use(
 );
 
 app.use("/", indexRouter);
-app.use("/api/question", questionRouter);
+app.use("/api/questions", questionRouter);
 app.use("/api/category", categoryRouter);
 
 // error handler

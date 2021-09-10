@@ -1,10 +1,15 @@
 const { validationResult } = require("express-validator");
-const { storeQuestion, getAll } = require("../services/question.service");
+const {
+  storeQuestion,
+  getAll,
+  editQuestion,
+  retrieveQuestion,
+} = require("../services/question.service");
 
 module.exports.index = async (req, res) => {
   try {
     const questions = await getAll();
-    return res.json({ questions });
+    return res.json(questions);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -26,8 +31,23 @@ module.exports.store = async (req, res) => {
   }
 };
 
-module.exports.show = async (req, res) => {};
+module.exports.edit = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(422)
+      .json({ errors: errors.array({ onlyFirstError: true }) });
+  }
+  try {
+    const { id } = req.params;
+    const { question, options, category_id } = req.body;
+    await editQuestion(id, { question, options, category_id });
 
-module.exports.edit = async (req, res) => {};
+    const updateQuestion = await retrieveQuestion(id);
+    return res.json(updateQuestion);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports.destroy = async (req, res) => {};

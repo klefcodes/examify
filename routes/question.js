@@ -3,20 +3,21 @@ const { Router } = require("express");
 const {
   index,
   store,
-  show,
   edit,
   destroy,
 } = require("../controllers/question.controller");
 // Middleware
-const { storeQuestionRequest } = require("../middleware/validator");
+const {
+  storeQuestionRequest,
+  editQuestionRequest,
+} = require("../middleware/validator");
 
 const router = Router();
 
 router
   .get("/", index)
-  .get("/:id", show)
   .post("/", storeQuestionRequest(), store)
-  .patch("/:id", edit)
+  .patch("/:id", editQuestionRequest(), edit)
   .delete("/:id", destroy);
 
 module.exports = router;
