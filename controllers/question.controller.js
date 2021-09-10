@@ -1,8 +1,15 @@
+const { validationResult } = require("express-validator");
 const { storeQuestion } = require("../services/question.service");
 
 module.exports.index = async (req, res) => {};
 
 module.exports.store = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(422)
+      .json({ errors: errors.array({ onlyFirstError: true }) });
+  }
   try {
     const { question, options, category_id } = req.body;
     const created = await storeQuestion({ question, options, category_id });
