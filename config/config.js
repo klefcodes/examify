@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { DB_HOST, DB_USERNAME, DB_PASSWORD, DATABASE_URL } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
 
 module.exports = {
   development: {
@@ -31,7 +31,7 @@ module.exports = {
     },
   },
   production: {
-    use_env_variable: DATABASE_URL,
+    use_env_variable: "DATABASE_URL",
     dialect: "postgres",
     dialectOptions: {
       ssl: {
