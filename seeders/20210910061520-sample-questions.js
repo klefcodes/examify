@@ -14,8 +14,8 @@ module.exports = {
             { text: "console.log('Hello World')", correct: true },
           ]),
           category_id: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
         {
           question: "What is dog in French",
@@ -26,8 +26,8 @@ module.exports = {
             { text: "garçon" },
           ]),
           category_id: 2,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
         {
           question: "What is `the boy` in French",
@@ -41,8 +41,8 @@ module.exports = {
             { text: "la femme" },
           ]),
           category_id: 2,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
         {
           question: "What's the result of 2*8",
@@ -53,8 +53,8 @@ module.exports = {
             { text: 16, correct: true },
           ]),
           category_id: 3,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          created_at: new Date(),
+          updated_at: new Date(),
         },
       ],
       {}

@@ -9,6 +9,13 @@ module.exports = {
     database: "examify_dev",
     host: DB_HOST,
     dialect: "postgres",
+    define: {
+      timestamps: true,
+      underscored: true,
+      underscoredAll: true,
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   },
   test: {
     username: DB_USERNAME,
@@ -16,6 +23,12 @@ module.exports = {
     database: "examify_test",
     host: DB_HOST,
     dialect: "postgres",
+    define: {
+      timestamps: true,
+      underscored: true,
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   },
   production: {
     username: DB_USERNAME,
@@ -23,5 +36,11 @@ module.exports = {
     database: "examify_prod",
     host: DB_HOST,
     dialect: "postgres",
+    define: {
+      timestamps: true,
+      underscored: true,
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
   },
 };

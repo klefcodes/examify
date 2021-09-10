@@ -2,7 +2,10 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
+// Routes
 const indexRouter = require("./routes");
+const questionRouter = require("./routes/question");
+const categoryRouter = require("./routes/category");
 
 const app = express();
 
@@ -16,6 +19,8 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/api/question", questionRouter);
+app.use("/api/category", categoryRouter);
 
 // error handler
 app.use(function (err, req, res, next) {
