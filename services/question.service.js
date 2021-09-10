@@ -30,3 +30,7 @@ module.exports.retrieveQuestion = async (id) => {
     ],
   });
 };
+
+module.exports.deleteQuestion = async (id) => {
+  return await Question.destroy({ where: { id } });
+};

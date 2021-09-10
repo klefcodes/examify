@@ -36,3 +36,19 @@ module.exports.editQuestionRequest = () => {
     check("options", "Options is required").exists().isArray(),
   ];
 };
+
+module.exports.deleteQuestionRequest = () => {
+  const isValidQuestion = async (value) => {
+    const question = await Question.findOne({ where: { id: value } });
+    if (!question) {
+      return Promise.reject("The provided id is not a valid question");
+    }
+  };
+
+  return [
+    param("id", "Invalid question id")
+      .exists()
+      .isNumeric()
+      .custom(isValidQuestion),
+  ];
+};

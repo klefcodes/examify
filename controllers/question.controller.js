@@ -4,6 +4,7 @@ const {
   getAll,
   editQuestion,
   retrieveQuestion,
+  deleteQuestion,
 } = require("../services/question.service");
 
 module.exports.index = async (req, res) => {
@@ -50,4 +51,19 @@ module.exports.edit = async (req, res) => {
   }
 };
 
-module.exports.destroy = async (req, res) => {};
+module.exports.destroy = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(422)
+      .json({ errors: errors.array({ onlyFirstError: true }) });
+  }
+  try {
+    const { id } = req.params;
+    await deleteQuestion(id);
+
+    return res.json({ message: "Question deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
