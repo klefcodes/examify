@@ -1,6 +1,7 @@
 const { Router } = require("express");
 // Controller
 const {
+  index,
   store,
   show,
   edit,
@@ -12,7 +13,7 @@ const { storeQuestionRequest } = require("../middleware/validator");
 const router = Router();
 
 router
-  .get("/", store)
+  .get("/", index)
   .get("/:id", show)
   .post("/", storeQuestionRequest(), store)
   .patch("/:id", edit)

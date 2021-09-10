@@ -1,7 +1,14 @@
 const { validationResult } = require("express-validator");
-const { storeQuestion } = require("../services/question.service");
+const { storeQuestion, getAll } = require("../services/question.service");
 
-module.exports.index = async (req, res) => {};
+module.exports.index = async (req, res) => {
+  try {
+    const questions = await getAll();
+    return res.json({ questions });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports.store = async (req, res) => {
   const errors = validationResult(req);
