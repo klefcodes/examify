@@ -16,6 +16,7 @@ module.exports.getAll = async () => {
         model: Category,
       },
     ],
+    order: [["category_id", "ASC"]],
   });
 };
 
